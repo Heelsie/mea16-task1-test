@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     hostname = getenv('HOSTNAME')
-    name = getenv('Heels')
+    name = getenv('Heelsie')
     if name is None:
       name = "friend"
     return f"<h1>Hello {name}.</h1>\n\n<h2>I'm currently running in {hostname}.</h2>\n"
