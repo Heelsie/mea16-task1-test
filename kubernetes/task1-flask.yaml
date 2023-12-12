@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: task1
+  name: task1-Heels
   labels:
     app: task1
 spec:
   containers:
   - name: task1
-    image: stratcastor/task1kube
+    image: heelsie/task1kube
     ports: 
     - containerPort: 5500
 ---
@@ -16,7 +16,7 @@ kind: Service
 metadata:
   name: flask-app
 spec:
-  type: LoadBalancer 
+  type: ClusterIP 
   selector:
     app: task1
   ports:
