@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: task1-Heels
+  name: task1
   labels:
     app: task1
 spec:
