@@ -18,8 +18,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                docker build -t stratcastor/flask-jenk:latest -t stratcastor/flask-jenk:v${BUILD_NUMBER} .
-                docker build -t stratcastor/nginx-jenk:latest -t stratcastor/nginx-jenk:v${BUILD_NUMBER} ./nginx
+                docker build -t heelsie/flask-jenk:latest -t heelsie/flask-jenk:v${BUILD_NUMBER} .
+                docker build -t heelsie/nginx-jenk:latest -t heelsie/nginx-jenk:v${BUILD_NUMBER} ./nginx
                 '''
             }
         }
@@ -27,10 +27,10 @@ pipeline {
         stage('Push') {
             steps {
                 sh '''
-                docker push stratcastor/flask-jenk:latest
-                docker push stratcastor/flask-jenk:v${BUILD_NUMBER}
-                docker push stratcastor/nginx-jenk:latest
-                docker push stratcastor/nginx-jenk:v${BUILD_NUMBER}
+                docker push heelsie/flask-jenk:latest
+                docker push heelsie/flask-jenk:v${BUILD_NUMBER}
+                docker push heelsie/nginx-jenk:latest
+                docker push heelsie/nginx-jenk:v${BUILD_NUMBER}
                 '''
             }
         }
@@ -39,8 +39,8 @@ pipeline {
             steps {
                 sh '''
                 ssh -i ~/.ssh/id_rsa jenkins@10.154.0.20 << EOF
-                docker run -d --name flask-app --network jenk-network stratcastor/flask-jenk
-                docker run -d -p 80:80 --name nginx --network jenk-network stratcastor/nginx-jenk
+                docker run -d --name flask-app --network jenk-network heelsie/flask-jenk
+                docker run -d -p 80:80 --name nginx --network jenk-network heelsie/nginx-jenk
                 '''
             }
         }
